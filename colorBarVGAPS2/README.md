@@ -5,7 +5,7 @@ VGA](https://digilent.com/reference/pmod/pmodvga/start) to displays 8 colors
 bars
 
 
-To use the design with PMOD-VGA from [Muse
+To use the design with PMOD-VGA from [Muse
 lab](https://www.tindie.com/products/johnnywu/pmod-vga-expansion-board/), add
 `VGA=muselab` option to make (colors could be wrong, but syncro will be ok) :
 

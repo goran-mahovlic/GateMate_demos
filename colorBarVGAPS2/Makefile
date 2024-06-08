@@ -7,7 +7,7 @@ P_R   = $(CC_TOOL)/bin/p_r/p_r
 
 PRFLAGS = --verbose -cCP
 
-VGA    ?= olimex
+VGA    = olimex
 TOP    = colorBarVGAPS2
 CONSTR = $(TOP)_$(VGA).ccf
 
@@ -23,11 +23,7 @@ OBJS += ../libs/clocks/gatemate_25MHz_pll.v
 
 YS_OPTS = -D DISP_640x480_60Hz=1
 
-ifeq ($(VGA), olimex)
 BOARD=olimex_gatemateevb
-else
-BOARD=gatemate_evb_jtag
-endif
 
 all:impl
 synth: $(TOP)_synth.v
