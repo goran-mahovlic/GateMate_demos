@@ -4,7 +4,7 @@
 
 module colorBarVGAPS2
 #(
-  parameter ps2core = 2 // 0-minimig 1-oberon 2-keyboard
+  parameter ps2core = 3 // 0-minimig 1-oberon 2-keyboard 3 - broken keyboard core
 )
 (
 	input clk_i, 
@@ -104,9 +104,20 @@ generate
   end
   if(ps2core == 2) // using oberon core
   begin
-	ps2kbd kbd(clk_pix, ps2clk, ps2data, ps2_keyboard_code, , );
+    ps2kbd kbd(clk_pix, ps2clk, ps2data, ps2_keyboard_code, , );
   end
-
+if(ps2core == 3)
+begin
+ps2keyboard kbd(
+    .clk25(clk_pix),   // 25MHz clock
+    .rst(reset),     // active high reset
+    .key_clk(ps2clk), // clock input from keyboard / device
+    .key_din(ps2data), // data input from keyboard / device
+    .cs(1'b1),      // chip select, active high
+    .address(1'b0), // =0 RX buffer, =1 RX status
+    .dout(ps2_keyboard_code)     // 8-bit output bus.
+    );
+end
 endgenerate
 
     parameter C_bits = 64; // can be 8 bu easier to read if some bits are 0x00

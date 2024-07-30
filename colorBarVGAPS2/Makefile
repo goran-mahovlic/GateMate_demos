@@ -13,6 +13,8 @@ CONSTR = $(TOP)_$(VGA).ccf
 
 OBJS += $(TOP).v
 OBJS += ../libs/hdl/ps2kbd.v
+OBJS += ../libs/hdl/ps2keyboard.v
+OBJS += ../libs/hdl/debounce.v
 OBJS += ../libs/hdl/vga.v
 OBJS += ../libs/hdl/hex_decoder_v.v
 OBJS += ../libs/hdl/ps2mouse.v
