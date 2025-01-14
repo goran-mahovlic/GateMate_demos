@@ -12,19 +12,19 @@ TOP    = colorBarVGAUSB
 CONSTR = $(TOP).ccf
 
 OBJS += $(TOP).v
-OBJS += ../libs/hdl/vga.v
-OBJS += ../libs/hdl/hex_decoder_v.v
-OBJS += ../libs/graphics/vga_core.v
-OBJS += ../libs/graphics/color_bar.v
-OBJS += ../libs/clocks/gatemate_25MHz_pll.v
-OBJS += ../libs/clocks/gatemate_48MHz_pll.v
-OBJS += ../libs/usb/usbhost/usbh_host_hid.v
-OBJS += ../libs/usb/usbhost/usbh_crc16.v
-OBJS += ../libs/usb/usbhost/usbh_crc5.v
-OBJS += ../libs/usb/usbhost/usbh_sie.v
-OBJS += ../libs/usb/usbhost/usb_phy.v
-OBJS += ../libs/usb/usbhost/usb_rx_phy.v
-OBJS += ../libs/usb/usbhost/usb_tx_phy.v
+OBJS += hdl/vga.v
+OBJS += hdl/hex_decoder_v.v
+OBJS += graphics/vga_core.v
+OBJS += graphics/color_bar.v
+OBJS += clocks/gatemate_25MHz_pll.v
+OBJS += clocks/gatemate_48MHz_pll.v
+OBJS += usbhost/usbh_host_hid.v
+OBJS += usbhost/usbh_crc16.v
+OBJS += usbhost/usbh_crc5.v
+OBJS += usbhost/usbh_sie.v
+OBJS += usbhost/usb_phy.v
+OBJS += usbhost/usb_rx_phy.v
+OBJS += usbhost/usb_tx_phy.v
 
 YS_OPTS = -D DISP_640x480_60Hz=1
 

@@ -12,7 +12,7 @@ module colorBarVGAUSB
 	output [3:0] o_b,
 	output o_vsync,
 	output o_hsync,
-	output o_led,
+	output [7:0] o_led,
 	input usb_fpga_dp,
 	inout usb_fpga_bd_dp,
 	inout usb_fpga_bd_dn,
@@ -91,7 +91,7 @@ hex_decoder_v
     .c_data_len(64),
     .c_row_bits(4), // 2**n digits per row (4*2**n bits/row) 3->32, 4->64, 5->128, 6->256 
     .c_grid_6x8(0), // NOTE: TRELLIS needs -abc9 option to compile
-    .c_font_file("../libs/hex/hex_font.mem"),
+    .c_font_file("hex/hex_font.mem"),
     .c_x_bits(8),
     .c_y_bits(4),
 .c_color_bits(C_color_bits)
