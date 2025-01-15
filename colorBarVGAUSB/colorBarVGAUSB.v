@@ -107,7 +107,7 @@ generate
     (
       .clk(clk_usb), // 48 MHz for full-speed USB1.1 device
       .bus_reset(~rstn_i),
-      .led(o_led[3:0]), // debug output
+      .led(o_led[7:4]), // debug output
       .usb_dif(usb1_fpga_dp),
       .usb_dp(usb1_fpga_bd_dp),
       .usb_dn(usb1_fpga_bd_dn),
@@ -139,7 +139,7 @@ generate
     (
       .clk(clk_usb), // 48 MHz for full-speed USB1.1 device
       .bus_reset(~rstn_i),
-      .led(o_led[7:4]), // debug output
+      .led(o_led[3:0]), // debug output
       .usb_dif(usb2_fpga_dp),
       .usb_dp(usb2_fpga_bd_dp),
       .usb_dn(usb2_fpga_bd_dn),
