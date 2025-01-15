@@ -23,21 +23,37 @@ Net "o_b[3]"  Loc = "IO_WB_A6";
 Net "o_hsync" Loc = "IO_WB_A1";
 Net "o_vsync" Loc = "IO_WB_B1";
 
-# USB
-Pin_in "usb1_fpga_dp" 		Loc = "IO_NA_A0" | LVDS;
-Pin_in "usb1_fpga_dn" 		Loc = "IO_NA_B0" | LVDS;
-Pin_inout "usb1_fpga_bd_dp"	Loc = "IO_NA_A4" | DRIVE=12;
-Pin_inout "usb1_fpga_bd_dn"	Loc = "IO_NA_B4" | DRIVE=12;
-Pin_out "usb1_fpga_pu_dp"	Loc = "IO_NA_A3" | DRIVE=12;
-Pin_out "usb1_fpga_pu_dn"	Loc = "IO_NA_B3" | DRIVE=12;
+# USB EB
+# Pin_in "usb1_fpga_dp" 		Loc = "IO_EB_A8" | LVDS;
+# Pin_in "usb1_fpga_dn" 		Loc = "IO_EB_B8" | LVDS;
+# Pin_inout "usb1_fpga_bd_dp"	Loc = "IO_EB_A4" | DRIVE=12;
+# Pin_inout "usb1_fpga_bd_dn"	Loc = "IO_EB_B4" | DRIVE=12;
+# Pin_out "usb1_fpga_pu_dp"	Loc = "IO_EB_A5" | DRIVE=12;
+# Pin_out "usb1_fpga_pu_dn"	Loc = "IO_EB_B5" | DRIVE=12;
+
+# USB EB
+# Pin_in "usb2_fpga_dp" 		Loc = "IO_EB_A7";
+# Pin_in "usb2_fpga_dn" 		Loc = "IO_EB_B7";
+# Pin_inout "usb2_fpga_bd_dp"	Loc = "IO_EB_A3";
+# Pin_inout "usb2_fpga_bd_dn"	Loc = "IO_EB_B3";
+# Pin_out "usb2_fpga_pu_dp"	Loc = "IO_EB_A6";
+# Pin_out "usb2_fpga_pu_dn"	Loc = "IO_EB_B6" | DRIVE=12;
+
 
 # USB
-Pin_in "usb2_fpga_dp" 		Loc = "IO_NA_A1" | LVDS;
-Pin_in "usb2_fpga_dn" 		Loc = "IO_NA_B1" | LVDS;
-Pin_inout "usb2_fpga_bd_dp"	Loc = "IO_NA_A5" | DRIVE=12;
-Pin_inout "usb2_fpga_bd_dn"	Loc = "IO_NA_B5" | DRIVE=12;
-Pin_out "usb2_fpga_pu_dp"	Loc = "IO_NA_A2" | DRIVE=12;
-Pin_out "usb2_fpga_pu_dn"	Loc = "IO_NA_B2" | DRIVE=12;
+Pin_in "usb1_fpga_dp" 			Loc = "IO_NA_A0";
+Pin_in "usb1_fpga_dn" 			Loc = "IO_NA_B0";
+Pin_inout "usb1_fpga_bd_dp"		Loc = "IO_NA_A4";
+Pin_inout "usb1_fpga_bd_dn"		Loc = "IO_NA_B4";
+Pin_out "usb1_fpga_pu_dp"		Loc = "IO_NA_A3";
+Pin_out "usb1_fpga_pu_dn"		Loc = "IO_NA_B3";
+# USB
+Pin_in "usb2_fpga_dp" 			Loc = "IO_NA_A1";
+Pin_in "usb2_fpga_dn" 			Loc = "IO_NA_B1";
+Pin_inout "usb2_fpga_bd_dp"		Loc = "IO_NA_A5";
+Pin_inout "usb2_fpga_bd_dn"		Loc = "IO_NA_B5";
+Pin_out "usb2_fpga_pu_dp"		Loc = "IO_NA_A2";
+Pin_out "usb2_fpga_pu_dn"		Loc = "IO_NA_B2";
 
 # leds
 Net   "o_led[0]"   Loc = "IO_WC_B3"; # LED D1
