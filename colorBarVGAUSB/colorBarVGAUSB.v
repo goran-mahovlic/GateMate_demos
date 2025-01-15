@@ -4,10 +4,9 @@ module colorBarVGAUSB
 #(
     parameter C_usb_speed = 1'b0, // 0-6MHz / 1-48MHz
     parameter C_report_bytes = 8, // 8:usual gamepad, 20:xbox360
-    parameter C_disp_bits=256,
-    // Select only one USB - as both are connected to LEDs and HEX decoder
+    parameter C_disp_bits=128,
     parameter C_us1 = 1,
-    parameter C_us2 = 0
+    parameter C_us2 = 1
 )
 (
     input clk_i,
@@ -83,7 +82,12 @@ always @(posedge clk_usb) begin
     LED_counter <= LED_counter + 1;
 end
 
-assign o_led_D1 = LED_counter[20];
+assign o_led_D1 = LED_counter[24];
+
+// assign usb1_fpga_bd_dp = LED_counter[24];
+// assign usb1_fpga_bd_dn = LED_counter[24];
+// assign usb2_fpga_bd_dp = LED_counter[24];
+// assign usb2_fpga_bd_dn = LED_counter[24];
 
 generate
   if(C_us1==1)
@@ -91,6 +95,8 @@ generate
 
     assign usb1_fpga_pu_dp = 1'b0;
     assign usb1_fpga_pu_dn = 1'b0;
+    //assign usb1_fpga_dn = ~usb1_fpga_dp;
+
     usbh_host_hid
     #(
       .C_report_length(C_report_bytes),
@@ -101,7 +107,7 @@ generate
     (
       .clk(clk_usb), // 48 MHz for full-speed USB1.1 device
       .bus_reset(~rstn_i),
-      .led(o_led), // debug output
+      .led(o_led[3:0]), // debug output
       .usb_dif(usb1_fpga_dp),
       .usb_dp(usb1_fpga_bd_dp),
       .usb_dn(usb1_fpga_bd_dn),
@@ -121,6 +127,8 @@ generate
 
     assign usb2_fpga_pu_dp = 1'b0;
     assign usb2_fpga_pu_dn = 1'b0;
+    //assign usb2_fpga_dn = ~usb2_fpga_dp;
+
     usbh_host_hid
     #(
       .C_report_length(C_report_bytes),
@@ -131,16 +139,16 @@ generate
     (
       .clk(clk_usb), // 48 MHz for full-speed USB1.1 device
       .bus_reset(~rstn_i),
-      .led(o_led), // debug output
+      .led(o_led[7:4]), // debug output
       .usb_dif(usb2_fpga_dp),
       .usb_dp(usb2_fpga_bd_dp),
       .usb_dn(usb2_fpga_bd_dn),
-      .hid_report(S_report[0]),
-      .hid_valid(S_valid[0])
+      .hid_report(S_report[1]),
+      .hid_valid(S_valid[1])
     );
     always @(posedge clk_usb)
-      if(S_valid[0])
-        R_display[63:0] <= S_report[0][63:0];
+      if(S_valid[1])
+        R_display[127:64] <= S_report[1][63:0];
 
     end
   endgenerate // US2

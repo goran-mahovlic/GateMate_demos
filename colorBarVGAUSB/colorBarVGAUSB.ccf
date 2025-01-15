@@ -24,20 +24,20 @@ Net "o_hsync" Loc = "IO_WB_A1";
 Net "o_vsync" Loc = "IO_WB_B1";
 
 # USB
-Net "usb1_fpga_dp" 		Loc = "IO_NA_A0";
-Net "usb1_fpga_dn" 		Loc = "IO_NA_B0";
-Net "usb1_fpga_bd_dp"	Loc = "IO_NA_A4";
-Net "usb1_fpga_bd_dn"	Loc = "IO_NA_B4";
-Net "usb1_fpga_pu_dp"	Loc = "IO_NA_A3";
-Net "usb1_fpga_pu_dn"	Loc = "IO_NA_B3";
+Pin_in "usb1_fpga_dp" 		Loc = "IO_NA_A0" | LVDS;
+Pin_in "usb1_fpga_dn" 		Loc = "IO_NA_B0" | LVDS;
+Pin_inout "usb1_fpga_bd_dp"	Loc = "IO_NA_A4" | DRIVE=12;
+Pin_inout "usb1_fpga_bd_dn"	Loc = "IO_NA_B4" | DRIVE=12;
+Pin_out "usb1_fpga_pu_dp"	Loc = "IO_NA_A3" | DRIVE=12;
+Pin_out "usb1_fpga_pu_dn"	Loc = "IO_NA_B3" | DRIVE=12;
 
 # USB
-Net "usb2_fpga_dp" 		Loc = "IO_NA_A1";
-Net "usb2_fpga_dn" 		Loc = "IO_NA_B1";
-Net "usb2_fpga_bd_dp"	Loc = "IO_NA_A5";
-Net "usb2_fpga_bd_dn"	Loc = "IO_NA_B5";
-Net "usb2_fpga_pu_dp"	Loc = "IO_NA_A2";
-Net "usb2_fpga_pu_dn"	Loc = "IO_NA_B2";
+Pin_in "usb2_fpga_dp" 		Loc = "IO_NA_A1" | LVDS;
+Pin_in "usb2_fpga_dn" 		Loc = "IO_NA_B1" | LVDS;
+Pin_inout "usb2_fpga_bd_dp"	Loc = "IO_NA_A5" | DRIVE=12;
+Pin_inout "usb2_fpga_bd_dn"	Loc = "IO_NA_B5" | DRIVE=12;
+Pin_out "usb2_fpga_pu_dp"	Loc = "IO_NA_A2" | DRIVE=12;
+Pin_out "usb2_fpga_pu_dn"	Loc = "IO_NA_B2" | DRIVE=12;
 
 # leds
 Net   "o_led[0]"   Loc = "IO_WC_B3"; # LED D1
