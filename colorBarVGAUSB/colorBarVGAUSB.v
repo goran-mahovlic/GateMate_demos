@@ -29,24 +29,44 @@ module colorBarVGAUSB
     inout usb2_fpga_bd_dp,
     inout usb2_fpga_bd_dn,
     output usb2_fpga_pu_dp,
-    output usb2_fpga_pu_dn
+    output usb2_fpga_pu_dn,
+    output TMDS_0_clk_p,
+    output TMDS_0_clk_n,
+    output [2:0] TMDS_0_data_p,
+    output [2:0] TMDS_0_data_n,
+    output wire TMDS_HPD,
+    output wire TMDS_IN    
 );
 
 wire clk_pix, lock, lock_usb;
 wire clk_usb;
 wire clk_6MHz, clk_48MHz;
 
+wire TMDS_0_clk;
+wire [2:0] TMDS_0_data;
+assign TMDS_HPD = 1'b0;
+assign TMDS_IN = 1'b0;
+
+CC_LVDS_OBUF lvds_obuf_inst [3:0] (
+    .A({TMDS_0_clk, TMDS_0_data}),
+    .O_P({TMDS_0_clk_n, TMDS_0_data_n}),
+    .O_N({TMDS_0_clk_p, TMDS_0_data_p})
+);
+
 wire [2:0] S_valid;
 wire [C_report_bytes*8-1:0] S_report[0:2];
 reg  [C_disp_bits-1:0] R_display;
 
-/* PLL for 25MHz VGA */
+/* PLL: 25MHz (pix clock) and 125MHz (hdmi clk rate) */
+wire clk_pix, clk_dvi, lock;
 pll pll_inst (
-    .clock_in(clk_i), // 10 MHz
-	 .rst_in(~rstn_i),
-    .clock_out(clk_pix), // 25 MHz, 0 deg
-    .locked(lock)
+    .clock_in(clk_i),       //  10 MHz reference
+    .clock_out(clk_pix),    //  25 MHz, 0 deg
+    .clock_5x_out(clk_dvi), // 125 MHz, 0 deg
+    .lock_out(lock)
 );
+
+wire rst = ~lock;
 
 /* PLL for 48MHz USB */
 pll48 pll_inst_usb (
@@ -83,11 +103,6 @@ always @(posedge clk_usb) begin
 end
 
 assign o_led_D1 = LED_counter[24];
-
-// assign usb1_fpga_bd_dp = LED_counter[24];
-// assign usb1_fpga_bd_dn = LED_counter[24];
-// assign usb2_fpga_bd_dp = LED_counter[24];
-// assign usb2_fpga_bd_dn = LED_counter[24];
 
 generate
   if(C_us1==1)
@@ -183,6 +198,12 @@ assign o_r = color[15:12];
 assign o_g = color[10:7];
 assign o_b = color[4:1];
 
+// VGA signal generator
+wire [7:0] vga_r, vga_g, vga_b;
+assign vga_r = {color[15:11],color[11],color[11],color[11]};
+assign vga_g = {color[10:5],color[5],color[5]};
+assign vga_b = {color[4:0],color[0],color[0],color[0]};
+
 wire vga_hsync, vga_vsync, vga_blank;
 
 vga
@@ -196,6 +217,24 @@ vga_instance
 .vga_hsync(o_hsync),
 .vga_vsync(o_vsync),
 .vga_blank(vga_blank)
+);
+
+dvi_core dvi_inst (
+    .clk_pix(clk_pix), 
+    .rst(rst), 
+    .clk_dvi(clk_dvi),
+    // horizontal & vertical synchro
+    .hsync_i(o_hsync), 
+    .vsync_i(o_vsync),
+    // display enable (active area)
+    .de_i(~vga_blank),
+    // pixel colors
+    .pix_r(vga_r), 
+    .pix_g(vga_g), 
+    .pix_b(vga_b),
+    // output signals
+    .TMDS_clk(TMDS_0_clk),
+    .TMDS_data(TMDS_0_data)
 );
 
 endmodule

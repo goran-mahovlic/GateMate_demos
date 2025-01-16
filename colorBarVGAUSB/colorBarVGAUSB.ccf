@@ -24,20 +24,20 @@ Net "o_hsync" Loc = "IO_WB_A1";
 Net "o_vsync" Loc = "IO_WB_B1";
 
 # USB EB
-# Pin_in "usb1_fpga_dp" 		Loc = "IO_EB_A8" | LVDS;
-# Pin_in "usb1_fpga_dn" 		Loc = "IO_EB_B8" | LVDS;
-# Pin_inout "usb1_fpga_bd_dp"	Loc = "IO_EB_A4" | DRIVE=12;
-# Pin_inout "usb1_fpga_bd_dn"	Loc = "IO_EB_B4" | DRIVE=12;
-# Pin_out "usb1_fpga_pu_dp"	Loc = "IO_EB_A5" | DRIVE=12;
-# Pin_out "usb1_fpga_pu_dn"	Loc = "IO_EB_B5" | DRIVE=12;
+#Pin_in "usb1_fpga_dp" 		Loc = "IO_EB_A8";
+#Pin_in "usb1_fpga_dn" 		Loc = "IO_EB_B8";
+#Pin_inout "usb1_fpga_bd_dp"	Loc = "IO_EB_A4";
+#Pin_inout "usb1_fpga_bd_dn"	Loc = "IO_EB_B4";
+#Pin_out "usb1_fpga_pu_dp"	Loc = "IO_EB_A5";
+#Pin_out "usb1_fpga_pu_dn"	Loc = "IO_EB_B5";
 
 # USB EB
-# Pin_in "usb2_fpga_dp" 		Loc = "IO_EB_A7";
-# Pin_in "usb2_fpga_dn" 		Loc = "IO_EB_B7";
-# Pin_inout "usb2_fpga_bd_dp"	Loc = "IO_EB_A3";
-# Pin_inout "usb2_fpga_bd_dn"	Loc = "IO_EB_B3";
-# Pin_out "usb2_fpga_pu_dp"	Loc = "IO_EB_A6";
-# Pin_out "usb2_fpga_pu_dn"	Loc = "IO_EB_B6" | DRIVE=12;
+#Pin_in "usb2_fpga_dp" 		Loc = "IO_EB_A7";
+#Pin_in "usb2_fpga_dn" 		Loc = "IO_EB_B7";
+#Pin_inout "usb2_fpga_bd_dp"	Loc = "IO_EB_A3";
+#Pin_inout "usb2_fpga_bd_dn"	Loc = "IO_EB_B3";
+#Pin_out "usb2_fpga_pu_dp"	Loc = "IO_EB_A6";
+#Pin_out "usb2_fpga_pu_dn"	Loc = "IO_EB_B6";
 
 
 # USB
@@ -54,6 +54,18 @@ Pin_inout "usb2_fpga_bd_dp"		Loc = "IO_NA_A5";
 Pin_inout "usb2_fpga_bd_dn"		Loc = "IO_NA_B5";
 Pin_out "usb2_fpga_pu_dp"		Loc = "IO_NA_A2";
 Pin_out "usb2_fpga_pu_dn"		Loc = "IO_NA_B2";
+
+#J1
+Pin_out "TMDS_0_data_n[2]" Loc = "IO_NB_A1" | LVDS_BOOST=true; #JA1
+Pin_out "TMDS_0_data_n[1]" Loc = "IO_NB_A2" | LVDS_BOOST=true; #JA2
+Pin_out "TMDS_0_data_n[0]" Loc = "IO_NB_A3" | LVDS_BOOST=true; #JA3
+Pin_out "TMDS_0_clk_n"     Loc = "IO_NB_A4" | LVDS_BOOST=true; #JA4
+Pin_out "TMDS_0_data_p[2]" Loc = "IO_NB_B1" | LVDS_BOOST=true; #JA7
+Pin_out "TMDS_0_data_p[1]" Loc = "IO_NB_B2" | LVDS_BOOST=true; #JA8
+Pin_out "TMDS_0_data_p[0]" Loc = "IO_NB_B3" | LVDS_BOOST=true; #JA9
+Pin_out "TMDS_0_clk_p"     Loc = "IO_NB_B4" | LVDS_BOOST=true; #JA10
+Pin_out "TMDS_HPD" 		   Loc = "IO_NB_B6";
+Pin_out "TMDS_IN"		   Loc = "IO_NB_B0";
 
 # leds
 Net   "o_led[0]"   Loc = "IO_WC_B3"; # LED D1
